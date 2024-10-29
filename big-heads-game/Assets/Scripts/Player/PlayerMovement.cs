@@ -3,46 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    // Velocidade de movimento do player
     public float moveSpeed = 5f;
+    public Transform weapon; // Referência ao transform da arma
 
-    // Rigidbody2D do player
     private Rigidbody2D rb;
-
-    // Vetor para armazenar a direção do movimento
     private Vector2 movement;
-
-    // Animator do player
     private Animator animator;
 
-    // Inicialização
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Atualiza a entrada do jogador a cada frame
     void Update() {
         // Captura a entrada do jogador
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        // Atualiza as animações
-        UpdateAnimations();
+        // Verifica se há movimento e ativa a animação de correr
+        if (animator != null) {
+            animator.SetBool("isRunning", movement.magnitude > 0);
+        }
+
+        // Ajusta a direção do player e da arma
+        RotatePlayerAndWeaponTowardsMouse();
     }
-     
-    // Físicas e movimentação do player
+
     void FixedUpdate() {
         // Movimenta o player usando o Rigidbody2D
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
-    // Atualiza as animações do player
-    private void UpdateAnimations() {
-        if (animator != null) {
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude);
+    // Gira o player e a arma em direção ao mouse
+    void RotatePlayerAndWeaponTowardsMouse() {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f; // Ajusta a posição Z do mouse
+
+        Vector2 direction = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Rotaciona a arma para apontar para o mouse
+        weapon.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        // Vira o player e a arma para a esquerda ou direita
+        if (direction.x < 0) {
+            transform.localScale = new Vector3(-1, 1, 1); // Vira o player para a esquerda
+            weapon.localScale = new Vector3(-1, -1, 1); // Inverte a escala Y da arma
+        }
+        else {
+            transform.localScale = new Vector3(1, 1, 1); // Vira o player para a direita
+            weapon.localScale = new Vector3(1, 1, 1); // Normaliza a escala Y da arma
         }
     }
 }
