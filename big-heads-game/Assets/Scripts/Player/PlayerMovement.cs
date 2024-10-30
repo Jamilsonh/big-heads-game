@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     public float moveSpeed = 5f;
-    public Transform weapon; // Referência ao transform da arma
+    //public Transform weapon; // Referência ao transform da arma
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -42,17 +42,17 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 direction = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Rotaciona a arma para apontar para o mouse
-        weapon.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        Transform weaponHolder = GetComponentInChildren<WeaponManager>().weaponHolder;
+        weaponHolder.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // Vira o player e a arma para a esquerda ou direita
         if (direction.x < 0) {
             transform.localScale = new Vector3(-1, 1, 1); // Vira o player para a esquerda
-            weapon.localScale = new Vector3(-1, -1, 1); // Inverte a escala Y da arma
+            weaponHolder.localScale = new Vector3(-1, -1, 1); // Inverte a escala Y da arma
         }
         else {
             transform.localScale = new Vector3(1, 1, 1); // Vira o player para a direita
-            weapon.localScale = new Vector3(1, 1, 1); // Normaliza a escala Y da arma
+            weaponHolder.localScale = new Vector3(1, 1, 1); // Normaliza a escala Y da arma
         }
     }
 }
