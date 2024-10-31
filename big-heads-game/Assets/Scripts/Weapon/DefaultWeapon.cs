@@ -14,6 +14,7 @@ public class DefaultWeapon : Weapon
     }
 
     public override void Use() {
+        Shoot();
         Debug.Log("Firing " + weaponName);
     }
 

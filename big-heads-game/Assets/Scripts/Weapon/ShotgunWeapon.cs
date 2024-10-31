@@ -21,6 +21,7 @@ public class ShotgunWeapon : Weapon
         if (currentAmmo > 0) {
             Debug.Log("Firing " + weaponName + " with spread shot of " + pelletCount + " pellets.");
             currentAmmo--;
+            Shoot();
         }
         else {
             Debug.Log(weaponName + " is out of ammo!");

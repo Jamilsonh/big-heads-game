@@ -21,6 +21,7 @@ public class SpecialWeapon : Weapon
         if (currentAmmo > 0) {
             Debug.Log("Firing " + weaponName + " with penetrating shot.");
             currentAmmo--;
+            Shoot();
         }
         else {
             Debug.Log(weaponName + " is out of ammo!");

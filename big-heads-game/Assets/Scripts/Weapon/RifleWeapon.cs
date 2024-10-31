@@ -18,6 +18,7 @@ public class RifleWeapon : Weapon
         if (currentAmmo > 0) {
             Debug.Log("Firing " + weaponName);
             currentAmmo--;
+            Shoot();
         }
         else {
             Debug.Log(weaponName + " is out of ammo!");
