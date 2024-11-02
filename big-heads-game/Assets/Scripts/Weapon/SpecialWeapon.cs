@@ -10,7 +10,7 @@ public class SpecialWeapon : Weapon
         base.Start();
         weaponName = "Arma Dourada";
         damage = 25;
-        fireRate = 0.5f;
+        fireRate = 6.5f;
         reloadSpeed = 1.0f;
         hasUnlimitedAmmo = false;
         maxAmmo = 20;

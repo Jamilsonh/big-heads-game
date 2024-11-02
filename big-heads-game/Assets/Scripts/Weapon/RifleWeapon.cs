@@ -8,7 +8,7 @@ public class RifleWeapon : Weapon
         base.Start();
         weaponName = "Rifle";
         damage = 15;
-        fireRate = 0.2f;
+        fireRate = 8f;
         reloadSpeed = 1.5f;
         hasUnlimitedAmmo = false;
         maxAmmo = 30;

@@ -10,7 +10,7 @@ public class ShotgunWeapon : Weapon
         base.Start();
         weaponName = "Shotgun";
         damage = 50;
-        fireRate = 1.5f;
+        fireRate = 3f;
         reloadSpeed = 2.0f;
         hasUnlimitedAmmo = false;
         maxAmmo = 8;

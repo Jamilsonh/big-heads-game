@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3763302866904860897}
   - component: {fileID: 8984802355641379065}
   - component: {fileID: 2342885749661504964}
+  - component: {fileID: 5335966021175051650}
   m_Layer: 0
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -137,3 +138,48 @@ MonoBehaviour:
   maxAmmo: 0
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
   firePoint: {fileID: 8798938097034698878}
+--- !u!61 &5335966021175051650
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070153991363349632}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.15621942, y: -0.021977663}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.22431867, y: 0.565933}
+    oldSize: {x: 0.56666666, y: 0.33333334}
+    newSize: {x: 0.56666666, y: 0.33333334}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.56666666, y: 0.33333334}
+  m_EdgeRadius: 0

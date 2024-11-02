@@ -8,14 +8,14 @@ public class DefaultWeapon : Weapon
         base.Start();
         weaponName = "Arma Padrão";
         damage = 10;
-        fireRate = 0.5f;
+        fireRate = 5f;
         reloadSpeed = 1.0f;
         hasUnlimitedAmmo = true;
     }
 
     public override void Use() {
         Shoot();
-        Debug.Log("Firing " + weaponName);
+        //Debug.Log("Firing " + weaponName);
     }
 
     public override void Reload() {

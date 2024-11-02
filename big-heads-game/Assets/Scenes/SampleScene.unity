@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 36106809}
   - component: {fileID: 36106810}
+  - component: {fileID: 36106812}
+  - component: {fileID: 36106811}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -207,6 +209,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &36106811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36106808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b245223efb3fc4ea469177a328ceaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 
+  damage: 0
+  fireRate: 0
+  reloadSpeed: 0
+  hasUnlimitedAmmo: 0
+  maxAmmo: 0
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+--- !u!114 &36106812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36106808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b245223efb3fc4ea469177a328ceaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 
+  damage: 0
+  fireRate: 0
+  reloadSpeed: 0
+  hasUnlimitedAmmo: 0
+  maxAmmo: 0
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!1001 &143574132
 PrefabInstance:
   m_ObjectHideFlags: 0

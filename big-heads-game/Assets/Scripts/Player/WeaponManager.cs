@@ -9,7 +9,7 @@ public class WeaponManager : MonoBehaviour
 
     void Update() {
         // Detecta o clique do mouse ou botão de tiro
-        if (Input.GetButtonDown("Fire1") && currentWeapon != null) {
+        if (Input.GetButton("Fire1") && currentWeapon != null) {
             currentWeapon.Use();
         }
     }
