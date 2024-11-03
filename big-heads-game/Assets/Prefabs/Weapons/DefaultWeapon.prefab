@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4041534014384929460}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.04, z: -0.01951087}
+  m_LocalPosition: {x: 0.413, y: 0.06, z: -0.01951087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8984802355641379065}
   - component: {fileID: 2342885749661504964}
   - component: {fileID: 5335966021175051650}
-  - component: {fileID: 2129784371914995625}
+  - component: {fileID: 4016388154894666997}
   m_Layer: 0
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -140,6 +140,7 @@ MonoBehaviour:
   maxAmmo: 0
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
   firePoint: {fileID: 8798938097034698878}
+  weaponEffect: {fileID: 4016388154894666997}
 --- !u!61 &5335966021175051650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56666666, y: 0.33333334}
   m_EdgeRadius: 0
---- !u!114 &2129784371914995625
+--- !u!114 &4016388154894666997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,8 +224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7158132380107537907}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.504, y: 0.059, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.526, y: 0.064499974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -7,13 +7,13 @@ public class WeaponManager : MonoBehaviour
     public Transform weaponHolder; // Objeto onde a nova arma será equipada
     public Weapon currentWeapon; // Referência à arma equipada atualmente
     public bool isShooting; // Indica se o jogador está atirando
-    public WeaponEffect weaponEffect; // Referencia ao script de efeito de tiro
+    //public WeaponEffect weaponEffect; // Referencia ao script de efeito de tiro
 
     void Update() {
         // Detecta o clique do mouse ou botão de tiro
         if (Input.GetButton("Fire1") && currentWeapon != null) {
             currentWeapon.Use();
-            weaponEffect.ShowFireEffect(); // Chama o efeito de tiro
+            //weaponEffect.ShowFireEffect(); // Chama o efeito de tiro
             isShooting = true; // Define isShooting como true enquanto o jogador está atirando
         }
         else {

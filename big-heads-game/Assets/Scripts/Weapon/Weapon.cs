@@ -14,6 +14,7 @@ public abstract class Weapon : MonoBehaviour
 
     public GameObject projectilePrefab; // Prefab do projétil a ser instanciado
     public Transform firePoint; // Ponto de saída do projétil na arma
+    public WeaponEffect weaponEffect; // Referência ao script de efeito de tiro
 
     private float nextFireTime;
 
@@ -46,6 +47,11 @@ public abstract class Weapon : MonoBehaviour
 
             // Define o dano do projétil com base na arma
             projScript.damage = damage;
+
+            // Mostra o efeito de tiro na ponta da arma
+            if (weaponEffect != null) {  
+                weaponEffect.ShowFireEffect();
+            }
         }
     }
 }

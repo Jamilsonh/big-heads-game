@@ -8,7 +8,7 @@ public class DefaultWeapon : Weapon
         base.Start();
         weaponName = "Arma Padrão";
         damage = 10;
-        fireRate = 5f;
+        fireRate = 1f;
         reloadSpeed = 1.0f;
         hasUnlimitedAmmo = true;
     }

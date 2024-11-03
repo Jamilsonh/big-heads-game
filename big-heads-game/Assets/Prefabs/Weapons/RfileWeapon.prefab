@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7057007017538211872}
   - component: {fileID: -8170514185978252643}
   - component: {fileID: 4329593259767238752}
+  - component: {fileID: 7573961729893509552}
   m_Layer: 0
   m_Name: RfileWeapon
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7497940560896458384}
+  - {fileID: 2864862419054223722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7057007017538211872
@@ -107,6 +109,7 @@ MonoBehaviour:
   maxAmmo: 0
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
   firePoint: {fileID: 7497940560896458384}
+  weaponEffect: {fileID: 7573961729893509552}
 --- !u!61 &4329593259767238752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,6 +155,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84, y: 0.42}
   m_EdgeRadius: 0
+--- !u!114 &7573961729893509552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797945719056283843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2af289c6b265459a1fc9ef4d0f113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireEffectPrefab: {fileID: 4864390834921959330, guid: bb5d18148d0e53f44a3f849522e0b844, type: 3}
+  firePoint: {fileID: 2864862419054223722}
 --- !u!1 &4399785875886107535
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +195,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.46, y: 0.06, z: -3.5501204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2091920377199006759}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8647932268796015751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2864862419054223722}
+  m_Layer: 0
+  m_Name: FireAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2864862419054223722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647932268796015751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.617, y: 0.057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

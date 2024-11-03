@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 507629605059247547}
   - component: {fileID: 7099544018423155494}
   m_Layer: 0
-  m_Name: weapon_fire
+  m_Name: WeaponFireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
