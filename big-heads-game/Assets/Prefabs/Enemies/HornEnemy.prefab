@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4803482439552117229}
   - component: {fileID: 7526010948081353061}
   - component: {fileID: 4114396108535990393}
-  - component: {fileID: 6608252643579954685}
+  - component: {fileID: 3446226108424117336}
   m_Layer: 0
   m_Name: HornEnemy
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6608252643579954685
+--- !u!114 &3446226108424117336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7648807008452725576}
   - component: {fileID: 2417562741941968765}
   - component: {fileID: 2160618892085004819}
-  - component: {fileID: 3812076711679180922}
+  - component: {fileID: 851928778406666275}
   m_Layer: 0
   m_Name: FlyEnemy
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3812076711679180922
+--- !u!114 &851928778406666275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

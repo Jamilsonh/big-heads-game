@@ -2005,9 +2005,14 @@ MonoBehaviour:
   enemyConfigs:
   - {fileID: 11400000, guid: f3aacea084020df4ea729e019945c447, type: 2}
   - {fileID: 11400000, guid: 2f4380df6fdbb3b4888b49e2c26679b3, type: 2}
-  spawnPoints:
-  - {fileID: 2011176853}
-  spawnInterval: 2
+  player: {fileID: 349729315}
+  spawnRadius: 10
+  spawnInterval: 5
+  numberOfEnemies: 12
+  mapTopBoundary: 15
+  mapBottomBoundary: -15
+  mapLeftBoundary: -15
+  mapRightBoundary: 15
 --- !u!4 &2034131833
 Transform:
   m_ObjectHideFlags: 0
@@ -2017,7 +2022,7 @@ Transform:
   m_GameObject: {fileID: 2034131831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0781312, y: 1.0285316, z: -0.14939494}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

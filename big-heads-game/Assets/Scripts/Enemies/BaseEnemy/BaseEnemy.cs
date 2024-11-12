@@ -38,6 +38,6 @@ public class BaseEnemy : MonoBehaviour
             else {
                 spriteRenderer.flipX = false; // Vira o sprite para a direita
             }
-        }
+        } 
     }
 }
