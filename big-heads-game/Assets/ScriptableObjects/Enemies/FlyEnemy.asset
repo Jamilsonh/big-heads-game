@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyName: FlyEnemy
   enemyPrefab: {fileID: 8792611087122352895, guid: ed275775f604fe944a9b90b8f076d78c, type: 3}
   health: 10
-  speed: 0.5
+  minSpeed: 2.5
+  maxSpeed: 3

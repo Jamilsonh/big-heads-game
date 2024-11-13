@@ -12,7 +12,7 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Initialize(EnemyConfig config) {
         health = config.health;
-        speed = config.speed;
+        speed = Random.Range(config.minSpeed, config.maxSpeed);
         player = GameObject.FindWithTag("Player").transform; // Assumindo que o player tem a tag "Player"
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o SpriteRenderer do inimigo
     }

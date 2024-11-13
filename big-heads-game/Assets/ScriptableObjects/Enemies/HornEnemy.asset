@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyName: HornEnemy
   enemyPrefab: {fileID: 8432564509603174687, guid: 83e3106f2370b054bb1efb2d1732c17b, type: 3}
   health: 20
-  speed: 0.5
+  minSpeed: 3
+  maxSpeed: 4
