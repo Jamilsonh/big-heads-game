@@ -2111,17 +2111,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2034131831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c273244f54c54e4c9d1c54672f48e90, type: 3}
+  m_Script: {fileID: 11500000, guid: 6eb78fa26847162479b6fff180e4cf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyConfigs:
   - {fileID: 11400000, guid: f3aacea084020df4ea729e019945c447, type: 2}
   - {fileID: 11400000, guid: 2f4380df6fdbb3b4888b49e2c26679b3, type: 2}
   playerTransform: {fileID: 349729315}
-  spawnInterval: 5
-  enemiesToSpawn: 5
   spacingBetweenEnemies: 2
   distanceFromPlayer: 15
+  totalEnemiesToSpawn: 10
 --- !u!1 &2110321969
 GameObject:
   m_ObjectHideFlags: 3
