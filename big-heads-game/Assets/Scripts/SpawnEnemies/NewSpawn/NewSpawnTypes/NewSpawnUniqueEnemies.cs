@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
+public class NewSpawnUniqueEnemies : MonoBehaviour
+{
     public List<EnemyConfig> enemyConfigs;
     public Transform playerTransform;
     public float spacingBetweenEnemies = 2f;
@@ -10,18 +11,20 @@ public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
     public int totalEnemiesToSpawn = 10;
 
     private bool hasSpawned = false;
-    public bool HasFinishedSpawning => hasSpawned;
 
-    public void Initialize(Transform playerTransform, List<EnemyConfig> enemyConfigs, int totalEnemiesToSpawn) {
-        this.playerTransform = playerTransform;
-        this.enemyConfigs = enemyConfigs;
-        this.totalEnemiesToSpawn = totalEnemiesToSpawn;
+    void OnEnable() {
+        // Garante que a estratégia seja executada apenas uma vez
         hasSpawned = false;
     }
 
-    public void SpawnEnemies() {
-        if (hasSpawned) return;
+    void Update() {
+        if (!hasSpawned) {
+            SpawnEnemiesInSingleDirection();
+            hasSpawned = true;
+        }
+    }
 
+    void SpawnEnemiesInSingleDirection() {
         // Seleciona uma configuração de inimigo aleatória
         EnemyConfig selectedConfig = enemyConfigs[Random.Range(0, enemyConfigs.Count)];
 
@@ -69,7 +72,5 @@ public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
                 enemy.Initialize(selectedConfig);
             }
         }
-
-        hasSpawned = true;
     }
 }

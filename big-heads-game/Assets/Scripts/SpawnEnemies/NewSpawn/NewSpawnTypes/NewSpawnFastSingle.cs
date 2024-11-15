@@ -2,33 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
+public class NewSpawnFastSingle : MonoBehaviour
+{
     public List<EnemyConfig> enemyConfigs;
     public Transform playerTransform;
+    public float spawnInterval = 0.5f;
+    public int minEnemiesToSpawn = 2;
+    public int maxEnemiesToSpawn = 5;
     public float spacingBetweenEnemies = 2f;
     public float distanceFromPlayer = 15f;
     public int totalEnemiesToSpawn = 10;
 
-    private bool hasSpawned = false;
-    public bool HasFinishedSpawning => hasSpawned;
+    private float spawnTimer;
+    private int spawnedEnemiesCount;
 
-    public void Initialize(Transform playerTransform, List<EnemyConfig> enemyConfigs, int totalEnemiesToSpawn) {
-        this.playerTransform = playerTransform;
-        this.enemyConfigs = enemyConfigs;
-        this.totalEnemiesToSpawn = totalEnemiesToSpawn;
-        hasSpawned = false;
+    void OnEnable() {
+        // Reinicia os contadores ao ativar a estratégia
+        spawnTimer = 0f;
+        spawnedEnemiesCount = 0;
     }
 
-    public void SpawnEnemies() {
-        if (hasSpawned) return;
+    void Update() {
+        if (spawnedEnemiesCount < totalEnemiesToSpawn) {
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= spawnInterval) {
+                SpawnEnemiesInSingleDirection();
+                spawnTimer = 0f;
+            }
+        }
+    }
 
+    void SpawnEnemiesInSingleDirection() {
         // Seleciona uma configuração de inimigo aleatória
         EnemyConfig selectedConfig = enemyConfigs[Random.Range(0, enemyConfigs.Count)];
 
         // Escolhe uma direção aleatória (0 = direita, 1 = esquerda, 2 = acima, 3 = abaixo)
         int direction = Random.Range(0, 4);
 
-        // Define a direção e calcula a posição inicial para o spawn
+        // Define a quantidade de inimigos a ser spawnada aleatoriamente entre o mínimo e o máximo,
+        // respeitando o total de inimigos restantes
+        int remainingEnemies = totalEnemiesToSpawn - spawnedEnemiesCount;
+        int enemiesToSpawn = Mathf.Min(Random.Range(minEnemiesToSpawn, maxEnemiesToSpawn + 1), remainingEnemies);
+
+        // Calcula a posição inicial para o spawn baseada na direção escolhida
         Vector3 startPosition = playerTransform.position;
         Vector3 offsetDirection = Vector3.zero;
 
@@ -52,9 +68,9 @@ public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
         }
 
         // Ajuste para centralizar o grupo de inimigos em relação ao player
-        float offset = (totalEnemiesToSpawn - 1) / 2f * spacingBetweenEnemies;
+        float offset = (enemiesToSpawn - 1) / 2f * spacingBetweenEnemies;
 
-        for (int i = 0; i < totalEnemiesToSpawn; i++) {
+        for (int i = 0; i < enemiesToSpawn; i++) {
             // Calcula a posição de cada inimigo na linha
             Vector3 spawnPosition = startPosition + (offsetDirection == Vector3.right || offsetDirection == Vector3.left
                 ? Vector3.up * (i * spacingBetweenEnemies - offset) // Direita ou Esquerda -> alinhe no eixo Y
@@ -70,6 +86,7 @@ public class SpawnUniqueManyEnemiesNew : MonoBehaviour, ISpawnType {
             }
         }
 
-        hasSpawned = true;
+        // Atualiza o contador de inimigos já spawnados
+        spawnedEnemiesCount += enemiesToSpawn;
     }
 }
