@@ -19,8 +19,9 @@ public class SpawnEnemyManager : MonoBehaviour
         spawnStrategies = new List<ISpawnStrategy> {
             //new SpawnEnemyFastSingle(playerTransform, enemyConfigs, "Spawn Fast Single"),
             //new SpawnEnemyUniqueManyEnemies(playerTransform, enemyConfigs, "Spawn Unique Many Enemies"),
-            new SpawnOneSide(playerTransform, enemyConfigs, "Spawn One Side"),
-            new SpawnTwoSides(playerTransform, enemyConfigs, "Spawn Two Sides")
+            //new SpawnOneSide(playerTransform, enemyConfigs, "Spawn One Side"),
+            //new SpawnTwoSides(playerTransform, enemyConfigs, "Spawn Two Sides")
+            new SpawnCircle(playerTransform, enemyConfigs, "Spawn Circle")
         };
     }
 
