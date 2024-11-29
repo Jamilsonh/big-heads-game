@@ -21,7 +21,9 @@ public class SpawnEnemyManager : MonoBehaviour
             //new SpawnEnemyUniqueManyEnemies(playerTransform, enemyConfigs, "Spawn Unique Many Enemies"),
             //new SpawnOneSide(playerTransform, enemyConfigs, "Spawn One Side"),
             //new SpawnTwoSides(playerTransform, enemyConfigs, "Spawn Two Sides")
-            new SpawnCircle(playerTransform, enemyConfigs, "Spawn Circle")
+            //new SpawnCircle(playerTransform, enemyConfigs, "Spawn Circle")
+            //new SpawnHalfCircle(playerTransform, enemyConfigs, "Spawn Half Circle")
+            new SpawnQuarterCircle(playerTransform, enemyConfigs, "Spawn Quarter Circle")
         };
     }
 

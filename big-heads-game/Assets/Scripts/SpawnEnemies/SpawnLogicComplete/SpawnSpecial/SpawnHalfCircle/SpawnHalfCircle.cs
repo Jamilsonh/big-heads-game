@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnCircle : ISpawnStrategy 
+public class SpawnHalfCircle : ISpawnStrategy
 {
     private Transform playerTransform;
     private List<EnemyConfig> enemyConfigs;
     private string strategyName;
 
-    private int enemiesToSpawn = 15; // Número fixo de inimigos
+    private int enemiesToSpawn = 8; // Número fixo de inimigos no meio círculo
     private float radius = 10f;
 
     private bool hasSpawned;
 
-    public SpawnCircle(Transform playerTransform, List<EnemyConfig> enemyConfigs, string name) {
+    public SpawnHalfCircle(Transform playerTransform, List<EnemyConfig> enemyConfigs, string name) {
         this.playerTransform = playerTransform; // Define a posição do jogador
         this.enemyConfigs = enemyConfigs; // Lista de inimigos disponíveis
         this.strategyName = name; // Nome da estratégia
@@ -26,7 +26,7 @@ public class SpawnCircle : ISpawnStrategy
 
     public void Update() {
         if (!hasSpawned) {
-            SpawnEnemiesInCircle();
+            SpawnEnemiesInHalfCircle();
             hasSpawned = true; // Garante que o spawn ocorre apenas uma vez
         }
     }
@@ -39,18 +39,45 @@ public class SpawnCircle : ISpawnStrategy
         return strategyName;
     }
 
-    private void SpawnEnemiesInCircle() {
+    private void SpawnEnemiesInHalfCircle() {
         // Selecionar a configuração de inimigo aleatoriamente
         EnemyConfig selectedConfig = enemyConfigs[Random.Range(0, enemyConfigs.Count)];
 
-        // Ângulo entre cada inimigo no círculo
-        float angleStep = 360f / enemiesToSpawn;
+        // Escolher aleatoriamente o lado para o meio círculo (0 = cima, 1 = direita, 2 = baixo, 3 = esquerda)
+        int side = Random.Range(0, 4);
+
+        // Definir o ângulo inicial e final com base no lado escolhido
+        float startAngle = 0f;
+        float endAngle = 180f;
+
+        switch (side) {
+            case 0: // Cima
+                startAngle = 0f;
+                endAngle = 180f;
+                break;
+            case 1: // Direita
+                startAngle = 270f;
+                endAngle = 450f;
+                break;
+            case 2: // Baixo
+                startAngle = 180f;
+                endAngle = 360f;
+                break;
+            case 3: // Esquerda
+                startAngle = 90f;
+                endAngle = 270f;
+                break;
+        }
+
+        // Ângulo entre cada inimigo no meio círculo
+        float angleStep = (endAngle - startAngle) / (enemiesToSpawn - 1);
 
         for (int i = 0; i < enemiesToSpawn; i++) {
-            // Calcular a posição de cada inimigo no círculo
-            float angle = i * angleStep;
+            // Calcular o ângulo para cada inimigo
+            float angle = startAngle + (i * angleStep);
             float radians = angle * Mathf.Deg2Rad;
 
+            // Calcular a posição de spawn com base no ângulo e no raio
             Vector3 spawnPosition = new Vector3(
                 playerTransform.position.x + Mathf.Cos(radians) * radius,
                 playerTransform.position.y + Mathf.Sin(radians) * radius,
