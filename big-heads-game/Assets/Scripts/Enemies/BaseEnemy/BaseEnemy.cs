@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour {
-    public float health;
-    public float speed;
+    private float health;
+    private float speed;
 
     protected Transform player;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+
+    private Color originalColor; // Cor original do inimigo
+    public Color flashColor = Color.white; // Cor do flash
+    public float flashDuration = 0.1f; // Duração do flash
 
     public virtual void Initialize(EnemyConfig config) {
         health = config.health;
@@ -17,10 +21,39 @@ public class BaseEnemy : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o SpriteRenderer do inimigo
         rb = GetComponent<Rigidbody2D>(); // Obtém o Rigidbody2D do inimigo
 
+        originalColor = spriteRenderer.color;
+
         // Certifique-se de que o Rigidbody2D existe
         if (rb == null) {
             Debug.LogError("Rigidbody2D não encontrado no inimigo.");
         }
+    }
+
+    public void TakeDamage(int damage) {
+        health -= damage;
+        Debug.Log($"{gameObject.name} recebeu {damage} de dano. Vida restante: {health}");
+
+        if (health <= 0) {
+            Die();
+        } else {
+            StartCoroutine(Flash());
+        }
+    }
+
+    private IEnumerator Flash() {
+        // Altera a cor do sprite para a cor de flash
+        spriteRenderer.color = flashColor;
+
+        // Espera por um curto período de tempo
+        yield return new WaitForSeconds(flashDuration);
+
+        // Restaura a cor original do sprite
+        spriteRenderer.color = originalColor;
+    }
+
+    private void Die() {
+        Debug.Log($"{gameObject.name} foi destruído.");
+        Destroy(gameObject); // Destroi o inimigo
     }
 
     protected virtual void FixedUpdate() {

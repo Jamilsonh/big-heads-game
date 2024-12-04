@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4803482439552117229}
   - component: {fileID: 7526010948081353061}
   - component: {fileID: 4114396108535990393}
-  - component: {fileID: 3446226108424117336}
   - component: {fileID: 7939974428817837759}
   - component: {fileID: 8573564570766033431}
-  - component: {fileID: 7030340823658017663}
+  - component: {fileID: 5521682482823918205}
   m_Layer: 6
   m_Name: HornEnemy
   m_TagString: Untagged
@@ -110,20 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3446226108424117336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432564509603174687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f009ccd6fb02c3a4780fc07acec203a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  speed: 0
 --- !u!70 &7939974428817837759
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -186,38 +171,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &7030340823658017663
-CapsuleCollider2D:
+--- !u!114 &5521682482823918205
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8432564509603174687}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0000002384186, y: -0.02926737}
-  m_Size: {x: 0.3901401, y: 0.6177458}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f009ccd6fb02c3a4780fc07acec203a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  flashColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  flashDuration: 0.1

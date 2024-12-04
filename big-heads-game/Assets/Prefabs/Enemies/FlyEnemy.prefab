@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7648807008452725576}
   - component: {fileID: 2417562741941968765}
   - component: {fileID: 2160618892085004819}
-  - component: {fileID: 851928778406666275}
   - component: {fileID: 7740972534189522355}
   - component: {fileID: 4626041672337538806}
-  - component: {fileID: 6820751776754049322}
+  - component: {fileID: 1410016337806429467}
   m_Layer: 6
   m_Name: FlyEnemy
   m_TagString: Untagged
@@ -79,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 52f15150821ebb044b6e207a9e9cd087, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.21226418, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,20 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &851928778406666275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792611087122352895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f009ccd6fb02c3a4780fc07acec203a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  speed: 0
 --- !u!58 &7740972534189522355
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -186,38 +171,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &6820751776754049322
-CircleCollider2D:
+--- !u!114 &1410016337806429467
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8792611087122352895}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03273883, y: -0.1057726}
-  serializedVersion: 2
-  m_Radius: 0.2396862
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f009ccd6fb02c3a4780fc07acec203a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  flashColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  flashDuration: 0.1

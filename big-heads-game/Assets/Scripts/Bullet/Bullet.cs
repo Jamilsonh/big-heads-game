@@ -18,8 +18,10 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        // Aqui você pode adicionar lógica para o projétil causar dano, desaparecer, etc.
-        //Debug.Log("Hit: " + collision.name);
-        //Destroy(gameObject); // Destroi o projétil ao colidir com algo
+        BaseEnemy enemy = collision.GetComponent<BaseEnemy>();
+        if (enemy != null) {
+            enemy.TakeDamage(damage); // Aplica dano ao inimigo
+            Destroy(gameObject); // Destroi o projétil
+        }
     }
 }
