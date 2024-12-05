@@ -14,6 +14,8 @@ public class BaseEnemy : MonoBehaviour {
     public Color flashColor = Color.white; // Cor do flash
     public float flashDuration = 0.1f; // Duração do flash
 
+    public GameObject deathEffect; // Referência para o prefab do efeito visual
+
     public virtual void Initialize(EnemyConfig config) {
         health = config.health;
         speed = Random.Range(config.minSpeed, config.maxSpeed);
@@ -53,7 +55,17 @@ public class BaseEnemy : MonoBehaviour {
 
     private void Die() {
         Debug.Log($"{gameObject.name} foi destruído.");
-        Destroy(gameObject); // Destroi o inimigo
+
+        // Instancia o efeito visual no local do inimigo
+        if (deathEffect != null) {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+        else {
+            Debug.LogWarning("Efeito de morte não atribuído ao inimigo.");
+        }
+
+        // Destroi o inimigo
+        Destroy(gameObject);
     }
 
     protected virtual void FixedUpdate() {

@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f009ccd6fb02c3a4780fc07acec203a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  speed: 0
   flashColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   flashDuration: 0.1
+  deathEffect: {fileID: 80420017947998717, guid: 3cd21fbb851775c4698bd98648046760, type: 3}
