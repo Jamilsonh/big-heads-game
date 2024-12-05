@@ -27,6 +27,14 @@ public class PlayerMovement : MonoBehaviour {
 
         // Ajusta a direção do player e da arma
         RotatePlayerAndWeaponTowardsMouse();
+
+        // Testar dano e cura
+        if (Input.GetKeyDown(KeyCode.K)) { // Aperte "K" para sofrer dano
+            GetComponent<PlayerHealth>().TakeDamage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.H)) { // Aperte "H" para curar
+            GetComponent<PlayerHealth>().Heal(10);
+        }
     }
 
     void FixedUpdate() {
