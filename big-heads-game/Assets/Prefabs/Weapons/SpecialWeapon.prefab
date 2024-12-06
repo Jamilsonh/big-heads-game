@@ -41,9 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3429051103281469426}
   - component: {fileID: 2711318001263391684}
-  - component: {fileID: -4046122660710211791}
   - component: {fileID: 7393642568141592062}
-  - component: {fileID: 5778437981870883993}
+  - component: {fileID: 4345359455652649817}
+  - component: {fileID: 2646310466907619027}
+  - component: {fileID: -1037706177614687283}
   m_Layer: 0
   m_Name: SpecialWeapon
   m_TagString: Untagged
@@ -120,28 +121,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4046122660710211791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5180189854489299999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dd2ec3573f029840b059cc69ab15717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: 
-  damage: 0
-  fireRate: 0
-  reloadSpeed: 0
-  hasUnlimitedAmmo: 0
-  maxAmmo: 0
-  projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
-  firePoint: {fileID: 1640794084426442666}
-  weaponEffect: {fileID: 5778437981870883993}
-  penetratesEnemy: 0
 --- !u!61 &7393642568141592062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,7 +166,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56666666, y: 0.33333334}
   m_EdgeRadius: 0
---- !u!114 &5778437981870883993
+--- !u!114 &4345359455652649817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,12 +175,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 5180189854489299999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be2af289c6b265459a1fc9ef4d0f113, type: 3}
+  m_Script: {fileID: 11500000, guid: b47a15a588e1f4346b884dc5e26b28cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireEffectPrefab: {fileID: 4864390834921959330, guid: bb5d18148d0e53f44a3f849522e0b844, type: 3}
-  firePoint: {fileID: 6919497964643072750}
-  effectDuration: 0.1
+  weaponData: {fileID: 11400000, guid: 0e6f720cc8fc74a4d8ef8abf5db472b7, type: 2}
+  weaponPrefab: {fileID: 5180189854489299999}
+--- !u!114 &2646310466907619027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180189854489299999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede388434a264f041a483edd6c21e932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzlePrefab: {fileID: 4864390834921959330, guid: bb5d18148d0e53f44a3f849522e0b844, type: 3}
+  muzzlePoint: {fileID: 6919497964643072750}
+--- !u!114 &-1037706177614687283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180189854489299999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4873c35916b5dd41884035e2d510af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: 0e6f720cc8fc74a4d8ef8abf5db472b7, type: 2}
+  firePoint: {fileID: 1640794084426442666}
+  currentAmmo: 50
+  muzzleEffect: {fileID: 2646310466907619027}
 --- !u!1 &8165839072795392271
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour {
     private float health;
     private float speed;
+    private int damage;
 
     protected Transform player;
     private SpriteRenderer spriteRenderer;
@@ -16,12 +17,18 @@ public class BaseEnemy : MonoBehaviour {
 
     public GameObject deathEffect; // Referência para o prefab do efeito visual
 
+    public EnemyConfig config; // Configuração do inimigo via ScriptableObject
+
+    private float damageCooldown = 0.2f; // Tempo entre os danos (em segundos)
+    private float lastDamageTime; // Controle do último momento em que o dano foi causado
+
     public virtual void Initialize(EnemyConfig config) {
         health = config.health;
         speed = Random.Range(config.minSpeed, config.maxSpeed);
         player = GameObject.FindWithTag("Player").transform; // Assumindo que o player tem a tag "Player"
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o SpriteRenderer do inimigo
         rb = GetComponent<Rigidbody2D>(); // Obtém o Rigidbody2D do inimigo
+        damage = config.damage;
 
         originalColor = spriteRenderer.color;
 
@@ -87,10 +94,15 @@ public class BaseEnemy : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionStay2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            // Lógica para dano ou outro efeito ao colidir com o player
-            Debug.Log("Inimigo colidiu com o jogador!");
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null && Time.time >= lastDamageTime + damageCooldown) {
+                playerHealth.OnHit(damage); // Aplica dano contínuo
+                lastDamageTime = Time.time; // Atualiza o momento do último dano
+                //Debug.Log($"{config.enemyName} causou {damage} de dano ao jogador.");
+            }
         }
     }
 }

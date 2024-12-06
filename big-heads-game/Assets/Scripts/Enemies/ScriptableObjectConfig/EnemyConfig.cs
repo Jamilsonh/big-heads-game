@@ -10,4 +10,5 @@ public class EnemyConfig : ScriptableObject
     public float health;
     public float minSpeed; // Velocidade mínima
     public float maxSpeed; // Velocidade máxima
+    public int damage; // Dano causado ao jogador
 }

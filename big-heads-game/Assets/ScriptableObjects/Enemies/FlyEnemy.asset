@@ -17,3 +17,4 @@ MonoBehaviour:
   health: 50
   minSpeed: 2.5
   maxSpeed: 3
+  damage: 10
