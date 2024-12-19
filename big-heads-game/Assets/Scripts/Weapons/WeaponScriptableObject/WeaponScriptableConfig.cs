@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeaponData", menuName = "Weapons/WeaponData")]
-public class WeaponData : ScriptableObject {
+[CreateAssetMenu(menuName = "Weapon/WeaponScriptableConfig")]
+public class WeaponScriptableConfig : ScriptableObject
+{
     public string weaponName;
     public int damage;
     public float fireRate;
@@ -11,5 +12,4 @@ public class WeaponData : ScriptableObject {
     public bool hasUnlimitedAmmo;
     public int maxAmmo;
     public GameObject projectilePrefab;
-    public Sprite weaponThumbnail;
 }

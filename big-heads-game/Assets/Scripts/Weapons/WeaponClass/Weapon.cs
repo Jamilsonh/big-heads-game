@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponClassNew : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     [Tooltip("ScriptableObject que contém os dados da arma")]
-    public WeaponData weaponData;
+    public WeaponScriptableConfig weaponData;
     public Transform firePoint;   // Ponto de saída do projétil
 
     private float nextFireTime;

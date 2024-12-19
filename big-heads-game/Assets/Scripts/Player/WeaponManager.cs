@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public Transform weaponHolder; // Objeto onde a nova arma será equipada
-    public WeaponClassNew currentWeapon;  // Referência à arma equipada atualmente
+    public Weapon currentWeapon;  // Referência à arma equipada atualmente
     public bool isShooting;
 
     void Update() {
@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     // Método para equipar uma arma ao pegar no chão
-    public void EquipWeapon(WeaponData newWeaponData, GameObject weaponPrefab) {
+    public void EquipWeapon(WeaponScriptableConfig newWeaponData, GameObject weaponPrefab) {
         // Se já existir uma arma equipada, destrói ela
         if (currentWeapon != null) {
             Destroy(currentWeapon.gameObject);
@@ -41,7 +41,7 @@ public class WeaponManager : MonoBehaviour
         newWeapon.transform.localScale = Vector3.one;
 
         // Configura o ScriptableObject como os dados da arma atual
-        currentWeapon = newWeapon.GetComponent<WeaponClassNew>();
+        currentWeapon = newWeapon.GetComponent<Weapon>();
         currentWeapon.weaponData = newWeaponData;
     }
 
