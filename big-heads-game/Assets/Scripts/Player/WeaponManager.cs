@@ -4,45 +4,61 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public Transform weaponHolder; // Objeto onde a nova arma será equipada
-    public Weapon currentWeapon;  // Referência à arma equipada atualmente
+    public Transform weaponHolder;
+    public Weapon currentWeapon;
     public bool isShooting;
-
-    void Update() {
-        if (Input.GetButton("Fire1") && currentWeapon != null) {
-            currentWeapon.Use();
-            isShooting = true;
-        }
-        else {
-            isShooting = false; 
-        }
-    }
 
     void Start() {
         if (currentWeapon != null) {
+            InitializeWeapon(currentWeapon);
             Debug.Log($"Starting with weapon: {currentWeapon.weaponData.weaponName}");
+
+            // Atualiza a UI com base na arma inicial
+            FindObjectOfType<WeaponUIManager>()?.UpdateUI();
         }
         else {
             Debug.LogWarning("No starting weapon assigned!");
         }
     }
 
-    // Método para equipar uma arma ao pegar no chão
+    void Update() {
+        if (Input.GetButton("Fire1") && currentWeapon != null) {
+            currentWeapon.Use();
+            isShooting = true;
+
+            FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+        }
+        else {
+            isShooting = false;
+        }
+    }
+
     public void EquipWeapon(WeaponScriptableConfig newWeaponData, GameObject weaponPrefab) {
-        // Se já existir uma arma equipada, destrói ela
         if (currentWeapon != null) {
             Destroy(currentWeapon.gameObject);
         }
 
-        // Instancia o novo prefab da arma no holder
         GameObject newWeapon = Instantiate(weaponPrefab, weaponHolder.position, Quaternion.identity, weaponHolder);
         newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.transform.localRotation = Quaternion.identity;
         newWeapon.transform.localScale = Vector3.one;
 
-        // Configura o ScriptableObject como os dados da arma atual
         currentWeapon = newWeapon.GetComponent<Weapon>();
         currentWeapon.weaponData = newWeaponData;
+
+        // Inicializa a munição da nova arma
+        InitializeWeapon(currentWeapon);
+
+        // Atualiza a UI com os valores da nova arma
+        FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+
+        Debug.Log($"Equipped new weapon: {currentWeapon.weaponData.weaponName}");
+    }
+
+    private void InitializeWeapon(Weapon weapon) {
+        // Inicializa munição com base nos valores do ScriptableObject
+        weapon.currentAmmo = weapon.weaponData.startingAmmo;
+        weapon.totalAmmo = weapon.weaponData.startingTotalAmmo;
     }
 
     // Detecta colisão com armas no chão

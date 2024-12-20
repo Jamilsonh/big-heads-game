@@ -6,22 +6,46 @@ public abstract class Weapon : MonoBehaviour
 {
     [Tooltip("ScriptableObject que contém os dados da arma")]
     public WeaponScriptableConfig weaponData;
-    public Transform firePoint;   // Ponto de saída do projétil
+    public Transform firePoint;
 
     private float nextFireTime;
-    public int currentAmmo; // Armazena a munição atual da arma
 
-    public MuzzleEffect muzzleEffect; // Referência ao script do efeito
+    [Header("Munição")]
+    public int currentAmmo;   // Munição atual no carregador
+    public int totalAmmo;     // Munição total disponível
+
+    public MuzzleEffect muzzleEffect;
 
     protected virtual void Start() {
-        currentAmmo = weaponData.maxAmmo;
+        // Não inicializar valores aqui para evitar conflito com WeaponManager
     }
 
     public abstract void Use();
 
     public virtual void Reload() {
-        Debug.Log($"{weaponData.weaponName} reloading...");
-        currentAmmo = weaponData.maxAmmo;
+        if (!weaponData.hasUnlimitedAmmo && totalAmmo > 0) {
+            int ammoNeeded = weaponData.maxAmmo - currentAmmo;
+
+            if (totalAmmo >= ammoNeeded) {
+                currentAmmo += ammoNeeded;
+                totalAmmo -= ammoNeeded;
+            }
+            else {
+                currentAmmo += totalAmmo;
+                totalAmmo = 0;
+            }
+
+            Debug.Log($"{weaponData.weaponName} reloaded. Ammo: {currentAmmo}/{totalAmmo}");
+        }
+        else if (weaponData.hasUnlimitedAmmo) {
+            currentAmmo = weaponData.maxAmmo;
+            Debug.Log($"{weaponData.weaponName} has unlimited ammo. Reloaded to max.");
+        }
+        else {
+            Debug.Log("No ammo left to reload!");
+        }
+
+        FindObjectOfType<WeaponUIManager>()?.UpdateUI();
     }
 
     protected void Shoot() {
@@ -29,31 +53,27 @@ public abstract class Weapon : MonoBehaviour
             if (Time.time >= nextFireTime) {
                 nextFireTime = Time.time + 1f / weaponData.fireRate;
 
-                // Reduz a munição se a arma não tiver munição ilimitada
                 if (!weaponData.hasUnlimitedAmmo) {
                     currentAmmo--;
                 }
 
-                // Instancia o projétil no FirePoint da arma
                 GameObject projectile = Instantiate(weaponData.projectilePrefab, firePoint.position, Quaternion.identity);
                 Bullet projScript = projectile.GetComponent<Bullet>();
-
-                // Define a direção do projétil com base na posição do mouse
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0; // Ajusta a posição Z para 2D
+                mousePosition.z = 0;
                 projScript.SetDirection(mousePosition);
-
-                // Define o dano do projétil com base na arma
                 projScript.damage = weaponData.damage;
 
-                // Mostra o efeito de pólvora
                 if (muzzleEffect != null) {
                     muzzleEffect.ShowEffect();
                 }
+
+                FindObjectOfType<WeaponUIManager>()?.UpdateUI();
             }
         }
         else {
-            Debug.Log("Out of ammo!");
+            Debug.Log("Out of ammo! Reloading...");
+            Reload();
         }
     }
 }

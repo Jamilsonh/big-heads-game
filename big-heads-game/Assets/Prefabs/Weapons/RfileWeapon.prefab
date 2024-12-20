@@ -178,6 +178,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 510c465df409cb84a8850f4a3f93e91a, type: 2}
   firePoint: {fileID: 7497940560896458384}
   currentAmmo: 30
+  totalAmmo: 50
   muzzleEffect: {fileID: 4970494074585820917}
 --- !u!1 &4399785875886107535
 GameObject:
