@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: ShotgunWp
   m_EditorClassIdentifier: 
   weaponName: ShotgunWp
-  damage: 50
-  fireRate: 2
+  icon: {fileID: 21300000, guid: 248ed72e7ab0e034983ed59e686a6924, type: 3}
+  damage: 70
+  fireRate: 0.8
   reloadSpeed: 1
   hasUnlimitedAmmo: 0
   maxAmmo: 50
+  startingAmmo: 10
+  startingTotalAmmo: 20
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}

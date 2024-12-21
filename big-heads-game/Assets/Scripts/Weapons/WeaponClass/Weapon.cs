@@ -17,7 +17,9 @@ public abstract class Weapon : MonoBehaviour
     public MuzzleEffect muzzleEffect;
 
     protected virtual void Start() {
-        // Não inicializar valores aqui para evitar conflito com WeaponManager
+        // Inicializa valores dinâmicos com base no ScriptableObject
+        currentAmmo = weaponData.startingAmmo;
+        totalAmmo = weaponData.startingTotalAmmo;
     }
 
     public abstract void Use();

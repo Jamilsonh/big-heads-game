@@ -9,8 +9,11 @@ public class MuzzleEffect : MonoBehaviour
 
     public void ShowEffect() {
         if (muzzlePrefab != null && muzzlePoint != null) {
-            GameObject effect = Instantiate(muzzlePrefab, muzzlePoint.position, muzzlePoint.rotation);
-            Destroy(effect, 1f);
+            // Instancia o efeito e o define como filho do muzzlePoint
+            GameObject effect = Instantiate(muzzlePrefab, muzzlePoint.position, muzzlePoint.rotation, muzzlePoint);
+
+            // Destroi o efeito após um tempo (ainda será destruído mesmo como filho)
+            Destroy(effect, 0.1f);
         }
     }
 }

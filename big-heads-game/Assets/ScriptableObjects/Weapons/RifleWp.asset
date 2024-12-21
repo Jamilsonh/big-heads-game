@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: RifleWp
   icon: {fileID: 21300000, guid: 90f520492fb6bd84885107c22fec3f78, type: 3}
-  damage: 15
-  fireRate: 1.2
+  damage: 45
+  fireRate: 8
   reloadSpeed: 1
   hasUnlimitedAmmo: 0
   maxAmmo: 50

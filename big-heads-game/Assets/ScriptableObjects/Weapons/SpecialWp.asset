@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: SpecialWp
   m_EditorClassIdentifier: 
   weaponName: SpecialWp
-  damage: 30
-  fireRate: 1
+  icon: {fileID: 0}
+  damage: 40
+  fireRate: 3
   reloadSpeed: 30
   hasUnlimitedAmmo: 0
   maxAmmo: 30
+  startingAmmo: 30
+  startingTotalAmmo: 60
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
