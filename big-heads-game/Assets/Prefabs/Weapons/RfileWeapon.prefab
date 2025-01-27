@@ -180,6 +180,13 @@ MonoBehaviour:
   currentAmmo: 30
   totalAmmo: 50
   muzzleEffect: {fileID: 4970494074585820917}
+  playerReloadAnimationManager: {fileID: 0}
+  shootSounds:
+  - {fileID: 8300000, guid: 708117ec2686c104f95a96037b941b1c, type: 3}
+  - {fileID: 8300000, guid: 708117ec2686c104f95a96037b941b1c, type: 3}
+  - {fileID: 8300000, guid: 708117ec2686c104f95a96037b941b1c, type: 3}
+  - {fileID: 8300000, guid: 708117ec2686c104f95a96037b941b1c, type: 3}
+  isReloading: 0
 --- !u!1 &4399785875886107535
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,4 +17,10 @@ public class WeaponScriptableConfig : ScriptableObject
     public int startingTotalAmmo;    // Quantidade inicial de balas totais
 
     public GameObject projectilePrefab;
+
+    [Header("Reload Animation")]
+    public GameObject reloadAnimationPrefab; // Prefab da animação de reload específico para a arma
+
+    [Header("Audio")]
+    public AudioClip reloadSound;
 }

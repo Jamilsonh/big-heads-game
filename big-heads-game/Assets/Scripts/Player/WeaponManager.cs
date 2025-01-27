@@ -8,7 +8,17 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon;
     public bool isShooting;
 
+    // Referência ao ReloadAnimationManager do Player
+    private ReloadAnimationManager reloadAnimationManager;
+
     void Start() {
+        // Busca o ReloadAnimationManager no Player
+        reloadAnimationManager = GetComponentInChildren<ReloadAnimationManager>();
+        if (reloadAnimationManager == null) {
+            Debug.LogWarning("ReloadAnimationManager not found on the Player!");
+        }
+
+        // Inicializa a arma inicial, se houver
         if (currentWeapon != null) {
             InitializeWeapon(currentWeapon);
             Debug.Log($"Starting with weapon: {currentWeapon.weaponData.weaponName}");
@@ -38,6 +48,7 @@ public class WeaponManager : MonoBehaviour
             Destroy(currentWeapon.gameObject);
         }
 
+        // Instancia a nova arma no holder do Player
         GameObject newWeapon = Instantiate(weaponPrefab, weaponHolder.position, Quaternion.identity, weaponHolder);
         newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.transform.localRotation = Quaternion.identity;
@@ -45,6 +56,11 @@ public class WeaponManager : MonoBehaviour
 
         currentWeapon = newWeapon.GetComponent<Weapon>();
         currentWeapon.weaponData = newWeaponData;
+
+        // Configura o ReloadAnimationManager do Player na arma
+        if (reloadAnimationManager != null) {
+            currentWeapon.playerReloadAnimationManager = reloadAnimationManager;
+        }
 
         // Inicializa a munição da nova arma
         InitializeWeapon(currentWeapon);

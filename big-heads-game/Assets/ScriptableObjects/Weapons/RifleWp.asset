@@ -16,9 +16,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 90f520492fb6bd84885107c22fec3f78, type: 3}
   damage: 45
   fireRate: 8
-  reloadSpeed: 1
+  reloadSpeed: 1.75
   hasUnlimitedAmmo: 0
   maxAmmo: 50
   startingAmmo: 15
   startingTotalAmmo: 15
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
+  reloadAnimationPrefab: {fileID: 1847015213723294376, guid: 1fe124ca40742b44faf374943722df81, type: 3}
+  reloadSound: {fileID: 8300000, guid: 8261950389d58d540a314fa7424df7f4, type: 3}

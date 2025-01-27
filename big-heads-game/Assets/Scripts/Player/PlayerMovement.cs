@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     private Vector2 movement;
     private Animator animator;
 
+    public GameObject reloadIndicator; 
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -57,10 +59,23 @@ public class PlayerMovement : MonoBehaviour {
         if (direction.x < 0) {
             transform.localScale = new Vector3(-1, 1, 1); // Vira o player para a esquerda
             weaponHolder.localScale = new Vector3(-1, -1, 1); // Inverte a escala Y da arma
+
+            
+            // Corrige o flip do indicador de reload
+            if (reloadIndicator != null) {
+                reloadIndicator.transform.localScale = new Vector3(-1, 1, 1); // Mantém positivo
+            }
         }
         else {
             transform.localScale = new Vector3(1, 1, 1); // Vira o player para a direita
             weaponHolder.localScale = new Vector3(1, 1, 1); // Normaliza a escala Y da arma
+
+            
+            // Corrige o flip do indicador de reload
+            if (reloadIndicator != null) {
+                reloadIndicator.transform.localScale = new Vector3(1, 1, 1); // Mantém positivo
+            }
+            
         }
     }
 }

@@ -209,7 +209,13 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: f36802b4dbb56754ebadc1966fd4a342, type: 2}
   firePoint: {fileID: 1640794084426442666}
   currentAmmo: 30
+  totalAmmo: 0
   muzzleEffect: {fileID: 5360606256998119867}
+  playerReloadAnimationManager: {fileID: 0}
+  shootSounds:
+  - {fileID: 8300000, guid: f0958908b5aeb254781360ebb72ebaad, type: 3}
+  - {fileID: 8300000, guid: 17c26bdc242884044b9898c508f6862c, type: 3}
+  isReloading: 0
 --- !u!1 &8165839072795392271
 GameObject:
   m_ObjectHideFlags: 0

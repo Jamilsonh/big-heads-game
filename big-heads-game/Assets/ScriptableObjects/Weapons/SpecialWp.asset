@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpecialWp
   m_EditorClassIdentifier: 
   weaponName: SpecialWp
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4592608bec4ffb74c9e583961f0d0bc3, type: 3}
   damage: 40
   fireRate: 3
   reloadSpeed: 30
@@ -22,3 +22,5 @@ MonoBehaviour:
   startingAmmo: 30
   startingTotalAmmo: 60
   projectilePrefab: {fileID: 8799069388125037688, guid: cb121902e0312ef4282ac54032cae863, type: 3}
+  reloadAnimationPrefab: {fileID: 1847015213723294376, guid: 1fe124ca40742b44faf374943722df81, type: 3}
+  reloadSound: {fileID: 8300000, guid: 8261950389d58d540a314fa7424df7f4, type: 3}
