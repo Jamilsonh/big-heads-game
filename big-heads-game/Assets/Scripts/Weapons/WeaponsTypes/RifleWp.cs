@@ -5,14 +5,12 @@ using UnityEngine;
 public class RifleWp : Weapon
 {
     public override void Use() {
+        if (this != FindObjectOfType<WeaponManager>().currentWeapon) return; // Apenas a arma equipada pode atirar
         Shoot();
     }
 
-    public override void Reload() {
-        if (weaponData.hasUnlimitedAmmo) {
-            Debug.Log($"{weaponData.weaponName} has unlimited ammo.");
-        } else {
-            base.Reload();
-        }
-    }
+    
 }
+
+
+

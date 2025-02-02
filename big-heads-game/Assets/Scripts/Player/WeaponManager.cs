@@ -10,21 +10,23 @@ public class WeaponManager : MonoBehaviour
 
     // Referência ao ReloadAnimationManager do Player
     private ReloadAnimationManager reloadAnimationManager;
+    private WeaponUIManager weaponUIManager; // Adicionado para evitar FindObjectOfType
+    public bool isReloading = false; // Variável para rastrear o estado de recarregamento
+
 
     void Start() {
-        // Busca o ReloadAnimationManager no Player
         reloadAnimationManager = GetComponentInChildren<ReloadAnimationManager>();
         if (reloadAnimationManager == null) {
             Debug.LogWarning("ReloadAnimationManager not found on the Player!");
         }
 
-        // Inicializa a arma inicial, se houver
+        weaponUIManager = FindObjectOfType<WeaponUIManager>(); // Guarda referência da UI
+
         if (currentWeapon != null) {
             InitializeWeapon(currentWeapon);
             Debug.Log($"Starting with weapon: {currentWeapon.weaponData.weaponName}");
 
-            // Atualiza a UI com base na arma inicial
-            FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+            weaponUIManager?.UpdateUI(); // Atualiza UI corretamente
         }
         else {
             Debug.LogWarning("No starting weapon assigned!");
@@ -35,12 +37,35 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetButton("Fire1") && currentWeapon != null) {
             currentWeapon.Use();
             isShooting = true;
-
-            FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+            weaponUIManager?.UpdateUI();
         }
         else {
             isShooting = false;
         }
+
+        // Agora, apenas a arma equipada pode recarregar
+        if (Input.GetKeyDown(KeyCode.R) && currentWeapon != null) {
+            StartCoroutine(ReloadWeapon());
+        }
+    }
+
+    private IEnumerator ReloadWeapon() {
+        if (isReloading || currentWeapon.totalAmmo <= 0 || currentWeapon.currentAmmo == currentWeapon.weaponData.maxAmmo) {
+            yield break; // Evita recarga desnecessária
+        }
+
+        isReloading = true;
+
+        // Toca som e animação de recarga
+        reloadAnimationManager.TriggerReloadAnimation(currentWeapon.weaponData.reloadAnimationPrefab);
+        currentWeapon.PlayReloadSound();
+
+        yield return new WaitForSeconds(currentWeapon.weaponData.reloadSpeed); // Tempo de recarga
+
+        currentWeapon.RefillAmmo(); // Agora apenas adicionamos munição à arma equipada
+
+        weaponUIManager?.UpdateUI(); // Atualiza a UI corretamente
+        isReloading = false;
     }
 
     public void EquipWeapon(WeaponScriptableConfig newWeaponData, GameObject weaponPrefab) {
@@ -48,7 +73,6 @@ public class WeaponManager : MonoBehaviour
             Destroy(currentWeapon.gameObject);
         }
 
-        // Instancia a nova arma no holder do Player
         GameObject newWeapon = Instantiate(weaponPrefab, weaponHolder.position, Quaternion.identity, weaponHolder);
         newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.transform.localRotation = Quaternion.identity;
@@ -56,17 +80,15 @@ public class WeaponManager : MonoBehaviour
 
         currentWeapon = newWeapon.GetComponent<Weapon>();
         currentWeapon.weaponData = newWeaponData;
+        //currentWeapon.weaponUIManager = weaponUIManager; // Passa a UI para a arma equipada
 
-        // Configura o ReloadAnimationManager do Player na arma
-        if (reloadAnimationManager != null) {
+        /*if (reloadAnimationManager != null) {
             currentWeapon.playerReloadAnimationManager = reloadAnimationManager;
-        }
+        }*/
 
-        // Inicializa a munição da nova arma
         InitializeWeapon(currentWeapon);
 
-        // Atualiza a UI com os valores da nova arma
-        FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+        weaponUIManager?.UpdateUI();
 
         Debug.Log($"Equipped new weapon: {currentWeapon.weaponData.weaponName}");
     }
@@ -81,10 +103,19 @@ public class WeaponManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         WeaponPickUp weaponPickup = collision.GetComponent<WeaponPickUp>();
         if (weaponPickup != null) {
-            // Equipa a nova arma
+            Debug.Log($"[WeaponManager] Arma coletada: {weaponPickup.weaponData.weaponName}");
+
             EquipWeapon(weaponPickup.weaponData, weaponPickup.weaponPrefab);
 
-            // Destroi o objeto da arma no chão
+            WeaponSpawner spawner = collision.GetComponentInParent<WeaponSpawner>();
+            if (spawner != null) {
+                Debug.Log($"[WeaponManager] Notificando spawner: {spawner.gameObject.name}");
+                spawner.NotifyWeaponPickedUp();
+            }
+            else {
+                Debug.LogWarning("[WeaponManager] Nenhum WeaponSpawner encontrado no parent da arma!");
+            }
+
             Destroy(collision.gameObject);
         }
     }

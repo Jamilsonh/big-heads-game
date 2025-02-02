@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5335966021175051650}
   - component: {fileID: 2111424945125401289}
   - component: {fileID: 4367336911560900314}
-  - component: {fileID: 4519460715985361625}
+  - component: {fileID: 7534091922646621980}
   m_Layer: 0
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 02cc8541856ef8447b3da73bc556e5b5, type: 2}
   weaponPrefab: {fileID: 6070153991363349632}
---- !u!114 &4519460715985361625
+--- !u!114 &7534091922646621980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 02cc8541856ef8447b3da73bc556e5b5, type: 2}
   firePoint: {fileID: 8798938097034698878}
-  currentAmmo: 20
+  weaponUIManager: {fileID: 0}
+  currentAmmo: 25
   totalAmmo: 150
   muzzleEffect: {fileID: 2111424945125401289}
   playerReloadAnimationManager: {fileID: 0}

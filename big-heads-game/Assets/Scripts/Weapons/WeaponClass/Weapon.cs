@@ -8,6 +8,8 @@ public abstract class Weapon : MonoBehaviour
     public WeaponScriptableConfig weaponData;
     public Transform firePoint;
 
+    //public WeaponUIManager weaponUIManager; // Referência específica da UI
+
     private float nextFireTime;
 
     [Header("Munição")]
@@ -17,7 +19,7 @@ public abstract class Weapon : MonoBehaviour
     public MuzzleEffect muzzleEffect;
 
     [Header("Player Reload Animation")]
-    public ReloadAnimationManager playerReloadAnimationManager; // Referência ao ReloadAnimationManager do Player
+    //public ReloadAnimationManager playerReloadAnimationManager; // Referência ao ReloadAnimationManager do Player
 
     [Header("Sons de Disparo")]
     public AudioClip[] shootSounds; // Array de sons de disparo
@@ -31,14 +33,12 @@ public abstract class Weapon : MonoBehaviour
     }
 
     private void Update() {
-        // Verifica se o botão de recarregar foi pressionado
-        if (Input.GetKeyDown(KeyCode.R)) {
-            Reload();
-        }
+        
     }
 
     public abstract void Use();
 
+    /*
     public virtual void Reload() {
         if (isReloading || totalAmmo <= 0 || currentAmmo == weaponData.maxAmmo) {
             return;
@@ -56,10 +56,21 @@ public abstract class Weapon : MonoBehaviour
 
         // Inicia o Coroutine de recarregamento
         StartCoroutine(ReloadCoroutine());
+    }*/
+
+    public void RefillAmmo() {
+        int ammoNeeded = weaponData.maxAmmo - currentAmmo;
+        if (totalAmmo >= ammoNeeded) {
+            currentAmmo += ammoNeeded;
+            totalAmmo -= ammoNeeded;
+        }
+        else {
+            currentAmmo += totalAmmo;
+            totalAmmo = 0;
+        }
     }
 
     public virtual IEnumerator ReloadCoroutine() {
-        // Lógica genérica de recarregamento (uma vez só para todas as balas)
         Debug.Log("Recarregando...");
 
         yield return new WaitForSeconds(weaponData.reloadSpeed); // Espera pelo tempo de recarga
@@ -77,8 +88,8 @@ public abstract class Weapon : MonoBehaviour
 
         Debug.Log($"{weaponData.weaponName} reloaded. Ammo: {currentAmmo}/{totalAmmo}");
 
-        // Atualiza UI e estado
-        FindObjectOfType<WeaponUIManager>()?.UpdateUI();
+        
+
         isReloading = false;
     }
 
@@ -126,57 +137,7 @@ public abstract class Weapon : MonoBehaviour
         }
         else {
             Debug.Log("Out of ammo! Reloading...");
-            Reload();
-        }
-    }
-
-    protected void ShootShotgun() {
-        if (isReloading) {
-            Debug.Log("Cannot shoot while reloading!");
-            return;
-        }
-
-        if (currentAmmo > 0 || weaponData.hasUnlimitedAmmo) {
-            if (Time.time >= nextFireTime) {
-                nextFireTime = Time.time + 1f / weaponData.fireRate;
-
-                if (!weaponData.hasUnlimitedAmmo) {
-                    currentAmmo--; // Subtrair apenas uma munição, mesmo com 3 tiros
-                }
-
-                // Define os ângulos dos projéteis
-                float[] angles = { -7f, 0f, 7f }; // Três ângulos diferentes para os projéteis
-
-                foreach (float angle in angles) {
-                    // Instancia o projétil
-                    GameObject projectile = Instantiate(weaponData.projectilePrefab, firePoint.position, Quaternion.identity);
-
-                    // Configura a direção do projétil
-                    Bullet projScript = projectile.GetComponent<Bullet>();
-                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    mousePosition.z = 0;
-
-                    // Calcula a direção com base no ângulo
-                    Vector3 direction = (mousePosition - firePoint.position).normalized;
-                    direction = Quaternion.Euler(0, 0, angle) * direction; // Aplica a rotação do ângulo
-                    projScript.SetDirection(firePoint.position + direction);
-                    projScript.damage = weaponData.damage;
-                }
-
-                // Mostra o efeito de disparo, se houver
-                if (muzzleEffect != null) {
-                    muzzleEffect.ShowEffect();
-                }
-
-                // Reproduz o som de disparo aleatório
-                PlayRandomShootSound();
-
-                FindObjectOfType<WeaponUIManager>()?.UpdateUI();
-            }
-        }
-        else {
-            Debug.Log("Out of ammo! Reloading...");
-            Reload();
+            //Reload();
         }
     }
 

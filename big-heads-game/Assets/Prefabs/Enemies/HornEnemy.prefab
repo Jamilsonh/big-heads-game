@@ -186,3 +186,4 @@ MonoBehaviour:
   flashColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   flashDuration: 0.1
   deathEffect: {fileID: 80420017947998717, guid: 3cd21fbb851775c4698bd98648046760, type: 3}
+  config: {fileID: 0}
